@@ -5,7 +5,7 @@ describe "Static Pages" do
   describe "Home Page" do
 
     it "should have the content 'Sample App'" do
-      visit '/static_pages/home'
+      visit root_path
       expect(page).to have_title('Home')
     end
   end
@@ -13,7 +13,7 @@ describe "Static Pages" do
   describe "Help Page" do
 
     it 'should have the content "Help"' do
-      visit '/static_pages/help'
+      visit help_path
       expect(page).to have_title('Help')
     end
   end
@@ -21,8 +21,16 @@ describe "Static Pages" do
   describe "About Page" do
     
     it 'should have the content "About Us"' do
-      visit '/static_pages/about'
+      visit about_path
       expect(page).to have_title('About Us')
+    end
+  end
+
+  describe "Contact Page" do
+  
+    it "should have the content 'Contact'" do
+      visit contact_path
+      expect(page).to have_title("Contact")
     end
   end
 end
