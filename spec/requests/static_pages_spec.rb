@@ -7,7 +7,7 @@ describe "Static Pages" do
   describe "Home Page" do
     before { visit root_path }
 
-    it { should have_title('Home') }
+    it { should have_title(full_title('Home')) }
   end
 
   describe "Help Page" do
@@ -20,7 +20,7 @@ describe "Static Pages" do
   describe "About Page" do
     before { visit about_path }
 
-    it { should have_title('About Us') }
+    it { should have_title(full_title('About Us')) }
   end
 
   describe "Contact Page" do
