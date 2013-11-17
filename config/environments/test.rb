@@ -33,4 +33,7 @@ RailsBook::Application.configure do
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
+
+  # Speed up tests using FactoryGirl gem
+  ActiveModel::SecurePassword.min_cost = true
 end
