@@ -6,7 +6,7 @@
         <ul class="nav pull-right">
           <li>
             <% if signed_in? %>
-              <%= link_to "Home", user_path(@user) %>
+              <%= link_to "Home", user_path(current_user) %>
             <% else %>
               <%= link_to "Home", root_path %>
             <% end %>
