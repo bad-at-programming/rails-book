@@ -156,6 +156,11 @@ input, textarea, select, .uneditable-input {
 input {
     line-height: 25px;
     font-size: 12px;
+    padding: 10px 0
+}
+
+input.input-box {
+    padding: 10px 0;
 }
 
 #error_explanation {
