@@ -3,20 +3,41 @@ require 'spec_helper'
 describe "UserPages" do
 
   subject { page }
-
-  describe "Signup Page" do
-    before { visit signup_path }
-
-    it { should have_content('Sign Up') }
-    it { should have_title(full_title('Sign Up')) }
-  end
-
-  describe 'profile page' do
-    let( :user ) { FactoryGirl.create(:user) }
-    before { visit user_path(user) }
   
-    it { should have_content( user.name ) }
-    it { should have_title( user.name ) }
+  describe 'index' do
+    before do
+      sign_in FactoryGirl.create(:user)
+      FactoryGirl.create(:user, name: "Bob", email: "bob@example.com")
+      FactoryGirl.create(:user, name: "Ben", email: "ben@example.com")
+      visit users_path
+    end
+    
+    it { should have_title("All users") }
+    it { should have_content("All users") }
+    
+    it "should list each user" do
+      User.all.each do |user|
+        expect(page).to have_selector('li', text: user.name)
+      end
+    end
+  end
+  
+  describe 'signup page' do
+
+    describe "Signup Page" do
+      before { visit signup_path }
+  
+      it { should have_content('Sign Up') }
+      it { should have_title(full_title('Sign Up')) }
+    end
+  
+    describe 'profile page' do
+      let( :user ) { FactoryGirl.create(:user) }
+      before { visit user_path(user) }
+    
+      it { should have_content( user.name ) }
+      it { should have_title( user.name ) }
+    end
   end
 
   describe 'signup' do
@@ -53,6 +74,7 @@ describe "UserPages" do
 
   describe "edit" do
     let(:user) { FactoryGirl.create(:user) }
+    
     before do
       sign_in user
       visit edit_user_path(user)
@@ -88,5 +110,4 @@ describe "UserPages" do
       specify { expect(user.reload.email).to eq new_email }
     end
   end
-
 end
