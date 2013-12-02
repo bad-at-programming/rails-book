@@ -2,16 +2,13 @@
 <div class="row">
   <aside class="span4">
     <section>
-      <div>
         <h1>
           <%= gravatar_for(@user) %>
           <%= @user.name %>
         </h1>
-        <br/>
-      </div>
-      <h3>
-          <%= link_to "Make post", root_path, class: "btn btn-large btn-primary" %>
-      </h3>
+    </section>
+    <section>
+      <%= link_to "Post", root_path, class: "btn btn-large btn-primary", style: "margin: 10px 0 10px 20px" %>
     </section>
   </aside>
   <div class="span8">
