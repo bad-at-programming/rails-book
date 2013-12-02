@@ -14,6 +14,10 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
+  def feed
+    Micropost.where("user_id = ?", id)
+  end
+
   # public helper methods
 
   def User.new_remember_token
