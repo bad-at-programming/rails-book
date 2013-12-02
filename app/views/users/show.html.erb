@@ -7,9 +7,11 @@
           <%= @user.name %>
         </h1>
     </section>
-    <section>
-      <%= link_to "Post", root_path, class: "btn btn-large btn-primary", style: "margin: 10px 0 10px 20px" %>
-    </section>
+    <% if current_user?(User.find(params[:id])) %>
+      <section>
+        <%= link_to "Post", root_path, class: "btn btn-large btn-primary", style: "margin: 10px 0 10px 20px" %>
+      </section>
+    <% end %>
   </aside>
   <div class="span8">
     <% if @user.microposts.any? %>
