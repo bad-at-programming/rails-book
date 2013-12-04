@@ -7,6 +7,9 @@
           <%= @user.name %>
         </h1>
     </section>
+    <section>
+      <%= render 'shared/stats' %>
+    </section>
     <% if current_user?(User.find(params[:id])) %>
       <section>
         <%= link_to "Post", root_path, class: "btn btn-large btn-primary", style: "margin: 10px 0 10px 20px" %>
@@ -14,6 +17,7 @@
     <% end %>
   </aside>
   <div class="span8">
+    <%= render 'follow_form' if signed_in? %>
     <% if @user.microposts.any? %>
       <h3>Posts (<%= @user.microposts.count %>)</h3>
       <ol class="microposts">
