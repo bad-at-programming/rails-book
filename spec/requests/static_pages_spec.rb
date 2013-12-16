@@ -10,6 +10,7 @@ describe "Static Pages" do
     it { should have_title(full_title('Home')) }
 
     describe 'for signed-in users' do
+
       let(:user) { FactoryGirl.create(:user) }
       before do
         FactoryGirl.create(:micropost, user: user, content: "Lorem ipsum")
