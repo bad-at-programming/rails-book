@@ -17,6 +17,7 @@ class CommentsController < ApplicationController
     @comments = Comment.where(post_id: params[:id])
     respond_to do |format|
       format.json { render :json => @comments.to_json } 
+      format.xml  { render :xml  => @comments.to_xml  }
     end
   end
 
