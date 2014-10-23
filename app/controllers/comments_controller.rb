@@ -8,7 +8,11 @@ class CommentsController < ApplicationController
 
   def create
     @comment = Comment.new(comment_params)
-    @comment.save
+    if @comment.save
+      render :json => { status: "success", id: @comment.id }
+    else 
+      render :json => { status: "error", message: "Could not save post: #{@comment.errors.messages}"
+    end
   end
 
   def update
@@ -21,6 +25,9 @@ class CommentsController < ApplicationController
       format.json { render :json => @comments.to_json } 
       format.xml  { render :xml  => @comments.to_xml  }
     end
+    
+    # Default to rendering JSON
+    render :json => @comments.to_json
   end
 
 private
