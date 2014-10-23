@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
 
-  before_filter :set_headers
+  after_filter :set_headers
 
   def new
     @comment = Comment.new
@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
     if @comment.save
       render :json => { status: "success", id: @comment.id }
     else 
-      render :json => { status: "error", message: "Could not save post: #{@comment.errors.messages}"
+      render :json => { status: "error", message: "Could not save post: #{@comment.errors.messages}" }
     end
   end
 
@@ -20,14 +20,12 @@ class CommentsController < ApplicationController
   end
 
   def show
+    headers['Access-Control-Allow-Origin'] = '*'
     @comments = Comment.where(post_id: params[:id])
     respond_to do |format|
       format.json { render :json => @comments.to_json } 
       format.xml  { render :xml  => @comments.to_xml  }
     end
-    
-    # Default to rendering JSON
-    render :json => @comments.to_json
   end
 
 private
@@ -36,6 +34,6 @@ private
   end
   
   def set_headers
-    headers['Access-Control-Allow-Origin'] = "http://mdever.github.io"
+    headers['Access-Control-Allow-Origin'] = "*"
   end
 end

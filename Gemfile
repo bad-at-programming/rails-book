@@ -8,6 +8,7 @@ gem 'bootstrap-sass', '2.3.2.0'
 gem 'bcrypt-ruby', '3.1.2'
 gem 'faker', '1.1.2'
 gem 'bootstrap-will_paginate', '0.0.9'
+gem 'rack-cors', :require => 'rack/cors'
 
 group :development, :test do
   # Use sqlite3 as database for Active Record in Dev Mode
