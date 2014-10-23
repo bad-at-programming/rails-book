@@ -11,7 +11,7 @@ RailsBook::Application.routes.draw do
   resources :microposts, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
 
-  resources :comments, only: [:create, :destroy, :show, :update]
+  resources :comments, only: [:new, :create, :destroy, :show, :update]
 
   match '/signup', to: 'users#new', via: 'get'
   match '/signin', to: 'sessions#new', via: 'get'
