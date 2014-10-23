@@ -1,5 +1,7 @@
 class CommentsController < ApplicationController
 
+  before_filter :set_headers
+
   def new
     @comment = Comment.new
   end
@@ -24,5 +26,9 @@ class CommentsController < ApplicationController
 private
   def comment_params
     params.require(:comment).permit(:name, :email, :body, :post_id)
+  end
+  
+  def set_headers
+    headers['Access-Control-Allow-Origin'] = "http://mdever.github.io"
   end
 end
