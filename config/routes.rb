@@ -1,4 +1,7 @@
 RailsBook::Application.routes.draw do
+  get "comments/create"
+  get "comments/update"
+  get "comments/show"
   resources :users do
     member do
       get :following, :followers
@@ -7,6 +10,8 @@ RailsBook::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :microposts, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
+
+  resources :comments, only: [:create, :destroy, :show, :update]
 
   match '/signup', to: 'users#new', via: 'get'
   match '/signin', to: 'sessions#new', via: 'get'
