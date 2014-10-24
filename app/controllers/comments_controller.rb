@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
 
-  after_filter :set_headers
+  before_filter :set_headers
+  skip_before_action :verify_authenticity_token
 
   def new
     @comment = Comment.new
@@ -20,7 +21,6 @@ class CommentsController < ApplicationController
   end
 
   def show
-    headers['Access-Control-Allow-Origin'] = '*'
     @comments = Comment.where(post_id: params[:id])
     respond_to do |format|
       format.json { render :json => @comments.to_json } 
@@ -34,6 +34,9 @@ private
   end
   
   def set_headers
-    headers['Access-Control-Allow-Origin'] = "*"
+    headers['Access-Control-Allow-Origin'] = '*'
+    headers['Access-Control-Allow-Methods'] = 'GET, POST, OPTIONS'
+    headers['Access-Control-Allow-Credentials'] = 'true'
+    headers['Access-Control-Allow-Headers'] = 'DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type'
   end
 end
